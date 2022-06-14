@@ -1,6 +1,6 @@
 {
-  "name": "DebugIF",
-  "version": "1.0.0",
+  "name": "DebugIf",
+  "version": "1.0.2",
   "description": "Debug interface ",
   "keywords": "Debugging, Debug Interface, Serial",
   "repository":

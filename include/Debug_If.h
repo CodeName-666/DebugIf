@@ -41,7 +41,7 @@
 #endif
 
 #if !defined(DBIF_PRINTF_FUN)
-    #ifdef Arduino_h
+    #ifdef ARDUINO
 
         #if !defined(DBIF_STREAM)
             #define DBIF_STREAM Serial
