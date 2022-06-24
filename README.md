@@ -47,3 +47,30 @@ For the debugging purpose, there are different debug levels available:
 - LOG_WARN - Warnings and Errors will be printed
 - LOG_ERROR - Only Error messages will be printed
 - LOG_NONE    
+
+## Spezial Debug Options:
+
+There are some spezial options which can be used to configure the debug interface. All defines have a own default values and normaly they don't need to be changes
+
+
+1. Macro to initialize the DebugIf:
+This macro allwos you to use a diffrent init function as conficured. 
+***DEFAULT:*** The function `Serial.begin` is used for Arduino.
+
+`#define DBIF_INIT(args...)                      Serial.begin(args)`
+
+2. Macro to use a other message ouptut function: 
+This macro allows you to use a different function to print out your debug messages. 
+***DEFAULT:*** The function `Serial.printf` is used for Arduino.
+#define DBIF_PRINTF_FUN                          Serial.printf
+
+
+#define DBIF_TIMESTAMP_FUN                        millis()
+
+
+#define DBIF_FUNCTION_OUTPUT_ENABLE
+
+
+#define DBIF_ON_CHANGE_ENABLE
+
+```

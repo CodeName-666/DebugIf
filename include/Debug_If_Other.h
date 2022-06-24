@@ -1,6 +1,10 @@
 #ifndef DEBUG_IF_OTHER_H
 #define DEBUG_IF_OTHER_H
 
+     #if !defined(DBIF_INIT)
+        #define DBIF_INIT(args...)                                  
+    #endif
+
     #if !defined(DBIF_PRINTF_FUN)
         #define DBIF_PRINTF_FUN                                                 printf
     #endif
