@@ -95,7 +95,7 @@ This macro enables some macros which allows you to ouput debug messages only on 
 ## Example: How to use it in code: 
 
 
-*** main_debug.h***
+***main_debug.h***
 
 ```c
 #ifndef FILE_DEBUG_IF_H
@@ -143,7 +143,7 @@ This macro enables some macros which allows you to ouput debug messages only on 
 #endif
 
 ```
-*** main.c ***
+***main.c***
 ```c
 #include <Arduino.h>
 #include "main_debug.h"
