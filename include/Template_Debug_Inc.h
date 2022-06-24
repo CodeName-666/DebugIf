@@ -1,37 +1,23 @@
 #ifndef FILE_DEBUG_IF_H
 #define FILE_DEBUG_IF_H
-  #if defined __has_include || defined (DBIF_GLOBAL_ENABLED)
-    #if __has_include("DbIf/Debug_If.h") || defined (DBIF_GLOBAL_ENABLED)
+
+#if defined (DEBUG)
 /*--- Required DBIF Flags ------------------------------------------------*/
+      
       #define DBIF_ENABLED
 
       #define DBIF_LOGLEVEL LOG_DEBUG_0
 
       #define DBIF_MODULE_NAME "File_DebugIf"
-/*--- Optional DBIF Flags ------------------------------------------------*/  
-     
-     /**
-      * @brief Debug stream interface definition
-      * This flag can be used to define the Stream Output. Each class which inherits
-      * the Stream class can be used here. The default interface is "Serial"
-      */
-      //#define DBIF_STREAM Serial            
 
-     /**
-      * @brief Print function definition of the Stream
-      * This flag can be used to define the print function of the Stream interface.
-      * The default function is "printf".
-      */
-      //#define DBIF_PRINT printf
-
-     /**
+       /**
       * @brief Print function interface definition for the whole debug interface
       * This flag is the main debug fuction definition. This means, this flag 
       * combines DBIF_STREAM and DBIF_PRINT to
       *          DBIF_STREAM.DBIF_PRINT
       * If a other print function is required, this flag can be used.
       */
-      //DBIF_PRINTF_FUN DBIF_STREAM.DBIF_PRINT
+      //DBIF_PRINTF_FUN Serial.print
       
      /**
       * @brief Timestamp defintion function
@@ -51,12 +37,7 @@
        * This flag enables the debug output on change functionality
        */
       //#define DBIF_ON_CHANGE_ENABLE
-/*--- Debug Interface include --------------------------------------------*/
-      #include "DbIf/Debug_If.h"
-    #else
-      #warning "Include File Debug_If.h not found."
-    #endif
-  #else 
-    #warning "__has_include does not exist in this compiler version. Set -D DBIF_GLOBAL_ENABLED to enable."
-  #endif
+
+  #include "Debug_If.h"
+#endif
 #endif

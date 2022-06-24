@@ -40,36 +40,11 @@
     #define LOG_ON_CHANGE_ENABLE
 #endif
 
-#if !defined(DBIF_PRINTF_FUN)
-    #ifdef ARDUINO
 
-        #if !defined(DBIF_STREAM)
-            #define DBIF_STREAM Serial
-        #endif
-
-        #if !defined(DBIF_PRINT)
-            #define DBIF_PRINT printf
-        #endif
-
-        #if !defined(DBIF_PRINTF_FUN)
-            #define DBIF_PRINTF_FUN DBIF_STREAM.DBIF_PRINT
-        #endif
-
-        #if !defined(DBIF_TIMESTAMP_FUN)
-            #define DBIF_TIMESTAMP_FUN millis()
-        #endif
-    #endif
-
-    #if defined(DBIF_FUNCTION_OUTPUT_ENABLE)
-        #define DBIF_FUNCTION_OUTPUT "%s - ", __FUNCTION__
-    #else 
-        #define DBIF_FUNCTION_OUTPUT " "
-    #endif
+#ifdef ARDUINO
+   #include "Debug_If_Arduino.h"
 #else
-    #if !defined(DBIF_PRINTF_FUN)
-        #include <stdio.h>
-        #define DBIF_PRINTF_FUN printf
-    #endif
+    #include "Debug_If_Arduino.h"
 #endif
 
 /* A set of convenience macros for common log levels. */
@@ -92,7 +67,7 @@
 
 // DEBUG_3
 #if defined(DEBUG) && DBIF_LOGLEVEL >= LOG_DEBUG_3 
-    #define DBIF_LOG_DEBUG_3(...) DBIF_LOG_MACRO(DBIF_MODULE_NAME,"DEBUG", __VA_ARGS__)
+    #define DBIF_LOG_DEBUG_3(...) DBIF_LOG_MACRO(DBIF_MODULE_NAME,"DEBUG_3", __VA_ARGS__)
     #define DBIF_LOG_DEBUG_3_ONCE(OC_VAR,...) DBIF_ON_CHANGE_LOG_MACRO(OC_VAR,DBIF_MODULE_NAME,"DEBUG", __VA_ARGS__)
     #define DBIF_IF_DEBUG_3(X) X
 #else
@@ -103,7 +78,7 @@
 
 // DEBUG_2
 #if defined(DEBUG) && DBIF_LOGLEVEL >= LOG_DEBUG_2
-    #define DBIF_LOG_DEBUG_2(...) DBIF_LOG_MACRO(DBIF_MODULE_NAME,"DEBUG", __VA_ARGS__)
+    #define DBIF_LOG_DEBUG_2(...) DBIF_LOG_MACRO(DBIF_MODULE_NAME,"DEBUG_2", __VA_ARGS__)
     #define DBIF_LOG_DEBUG_2_ONCE(OC_VAR,...) DBIF_ON_CHANGE_LOG_MACRO(OC_VAR,DBIF_MODULE_NAME,"DEBUG", __VA_ARGS__)
     #define DBIF_IF_DEBUG_2(X) X
 #else
@@ -114,7 +89,7 @@
 
 // DEBUG_1
 #if defined(DEBUG) && DBIF_LOGLEVEL >= LOG_DEBUG_1 
-    #define DBIF_LOG_DEBUG_1(...) DBIF_LOG_MACRO(DBIF_MODULE_NAME,"DEBUG", __VA_ARGS__)
+    #define DBIF_LOG_DEBUG_1(...) DBIF_LOG_MACRO(DBIF_MODULE_NAME,"DEBUG_1", __VA_ARGS__)
     #define DBIF_LOG_DEBUG_1_ONCE(OC_VAR,...) DBIF_ON_CHANGE_LOG_MACRO(OC_VAR,DBIF_MODULE_NAME,"DEBUG", __VA_ARGS__)
     #define DBIF_IF_DEBUG_1(X) X
 #else
@@ -125,7 +100,7 @@
 
 // DEBUG_0
 #if defined(DEBUG) && DBIF_LOGLEVEL >= LOG_DEBUG_0 
-    #define DBIF_LOG_DEBUG_0(...) DBIF_LOG_MACRO(DBIF_MODULE_NAME,"DEBUG", __VA_ARGS__)
+    #define DBIF_LOG_DEBUG_0(...) DBIF_LOG_MACRO(DBIF_MODULE_NAME,"DEBUG_0", __VA_ARGS__)
     #define DBIF_LOG_DEBUG_0_ONCE(OC_VAR,...) DBIF_ON_CHANGE_LOG_MACRO(OC_VAR,DBIF_MODULE_NAME,"DEBUG", __VA_ARGS__)
     #define DBIF_IF_DEBUG_0(X) X
 #else
