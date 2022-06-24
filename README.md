@@ -91,3 +91,85 @@ This macro enables some macros which allows you to ouput debug messages only on 
 ```c
 #define DBIF_ON_CHANGE_ENABLE
 ```
+
+## Example: How to use it in code: 
+
+
+*** main_debug.h***
+
+```c
+#ifndef FILE_DEBUG_IF_H
+#define FILE_DEBUG_IF_H
+
+#if defined (DEBUG)
+/*--- Required DBIF Flags ------------------------------------------------*/
+      
+      #define DBIF_ENABLED
+
+      #define DBIF_LOGLEVEL LOG_DEBUG_0
+
+      #define DBIF_MODULE_NAME "MAIN"
+
+     /**
+      * @brief Print function interface definition for the whole debug interface
+      * This flag is the main debug fuction definition. This means, this flag 
+      * combines DBIF_STREAM and DBIF_PRINT to
+      *          DBIF_STREAM.DBIF_PRINT
+      * If a other print function is required, this flag can be used.
+      */
+      //DBIF_PRINTF_FUN DBIF_STREAM.DBIF_PRINT
+      
+     /**
+      * @brief Timestamp defintion function
+      * This flag can be used to modifie the timestamp funciton, which will be written 
+      * each time the DBIF_LOG... function is called.
+      */
+      //#define DBIF_TIMESTAMP_FUN millis()
+
+     /**
+      * @brief Debug function output enable flag
+      * Flag to ouput the function name where debug fucntion was called.
+      */
+      //#define DBIF_FUNCTION_OUTPUT_ENABLE   
+
+       /**
+       * @brief  Debug Macro ouput on change
+       * This flag enables the debug output on change functionality
+       */
+      //#define DBIF_ON_CHANGE_ENABLE
+
+  #include "Debug_If.h"
+#endif
+#endif
+
+```
+*** main.c ***
+```c
+#include <Arduino.h>
+#include "main_debug.h"
+
+
+void setup() {
+    
+    DBIF_INIT(9600);
+}
+
+uint8_t i = 0;
+
+void loop() {
+
+  DBIF_LOG_DEBUG_3("WORKS  Debug_3 %i", i);
+  DBIF_LOG_DEBUG_2("WORKS  Debug_2 %i", i);
+  DBIF_LOG_DEBUG_1("WORKS  Debug_1 %i", i);
+  DBIF_LOG_DEBUG_0("WORKS Debug_0 %i", i);
+    
+  DBIF_LOG_INFO("WORKS INFO %i", i);
+  DBIF_LOG_WARN("WORKS WAN %i", i);
+  DBIF_LOG_ERROR("WORKS ERROR %i", i);
+  
+
+  delay(500);
+  i++;
+}
+
+```
