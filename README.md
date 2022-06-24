@@ -58,31 +58,38 @@ This macro allwos you to use a diffrent init function as conficured.
 
 ***DEFAULT:*** The function `Serial.begin` is used for Arduino.
 
-`#define DBIF_INIT(args...)                      Serial.begin(args)`
+```c
+#define DBIF_INIT(args...)                      Serial.begin(args)`
 
 2. Macro to use a other message ouptut function: 
 This macro allows you to use a different function to print out your debug messages. 
 
 ***DEFAULT:*** The function `Serial.printf` is used for Arduino.
 
-`#define DBIF_PRINTF_FUN                          Serial.printf `
+```c
+#define DBIF_PRINTF_FUN                          Serial.printf
+```
 
 3. Macro to ouput time stamps: 
 Each debug messages includes also a time stamp. With this macro this function can be changed.
 
 ***DEFAULT:*** The function `millis()` is used for Arduino.
 
-`#define DBIF_TIMESTAMP_FUN                        millis()`
+```c
+#define DBIF_TIMESTAMP_FUN                        millis()
+```
 
 4. Macro to output the function or methode name:
 To use this feature, it is enough to comment in this macro only. This macro enables the output of the function 
 where the debug macro was called. It can be helpfully to idenfiy wich function cause an for example `LOG_ERROR` messge.
 
-`#define DBIF_FUNCTION_OUTPUT_ENABLE`
-
+```c
+#define DBIF_FUNCTION_OUTPUT_ENABLE
+```
 5. Enable debug ouput only on change:
 
 This macro enables some macros which allows you to ouput debug messages only on change. This can be helpfull when a function will be called fast and cyclic. 
 
-`#define DBIF_ON_CHANGE_ENABLE`
-
+```c
+#define DBIF_ON_CHANGE_ENABLE
+```
