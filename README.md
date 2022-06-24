@@ -55,21 +55,18 @@ There are some spezial options which can be used to configure the debug interfac
 
 1. Macro to initialize the DebugIf:
 This macro allwos you to use a diffrent init function as conficured. 
-
-***DEFAULT:*** The function `Serial.begin` is used for Arduino.
-
 ```c
 #define DBIF_INIT(args...)                      Serial.begin(args)`
 ```
+***DEFAULT:*** The function `Serial.begin` is used for Arduino.
+
 
 2. Macro to use a other message ouptut function: 
 This macro allows you to use a different function to print out your debug messages. 
-
-***DEFAULT:*** The function `Serial.printf` is used for Arduino.
-
 ```c
 #define DBIF_PRINTF_FUN                          Serial.printf
 ```
+***DEFAULT:*** The function `Serial.printf` is used for Arduino.
 
 3. Macro to ouput time stamps: 
 Each debug messages includes also a time stamp. With this macro this function can be changed.
