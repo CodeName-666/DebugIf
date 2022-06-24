@@ -60,6 +60,7 @@ This macro allwos you to use a diffrent init function as conficured.
 
 ```c
 #define DBIF_INIT(args...)                      Serial.begin(args)`
+```
 
 2. Macro to use a other message ouptut function: 
 This macro allows you to use a different function to print out your debug messages. 
