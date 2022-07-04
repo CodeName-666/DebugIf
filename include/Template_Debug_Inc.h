@@ -1,5 +1,9 @@
 #ifndef FILE_DEBUG_IF_H
 #define FILE_DEBUG_IF_H
+#ifdef DBIF_MODULE_NAME
+#undef DBIF_MODULE_NAME
+#endif
+
 
 #if defined (DEBUG)
 /*--- Required DBIF Flags ------------------------------------------------*/

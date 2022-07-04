@@ -1,6 +1,8 @@
 #ifndef DEBUG_IF_ARDUINO_H
 #define DEBUG_IF_ARDUINO_H
 
+    #include "Arduino.h"
+
     #if !defined(DBIF_INIT)
         #define DBIF_INIT(args...)                                  Serial.begin(args)
     #endif
