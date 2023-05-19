@@ -22,7 +22,6 @@
  */
 //#define DBIF_INIT(args...)                      Serial.begin(args)
     
-    
 /**
   * @brief Print function interface definition for the whole debug interface
   * This flag is the main debug fuction definition. This means, this flag 
@@ -45,11 +44,17 @@
   */
   //#define DBIF_FUNCTION_OUTPUT_ENABLE   
 
-    /**
+  /**
    * @brief  Debug Macro ouput on change
    * This flag enables the debug output on change functionality
    */
-  //#define DBIF_ON_CHANGE_ENABLE
+  //#define DBIF_LOG_ON_CHANGE_ENABLE
+
+  /**
+   * @brief Debug macro to define the EndOfLine Sign
+   * With this define, the end of line sing can be changed
+   */
+  //#define DBIF_END_OF_LINE_SIGN "\r\n"
 
   #include "Debug_If.h"
 #endif

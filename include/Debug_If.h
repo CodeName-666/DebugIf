@@ -28,6 +28,10 @@
 #define LOG_ERROR   1
 #define LOG_NONE    0
 
+/* ===========================================================================================*/
+/* ==== MACROS for DEBUG USER SETTINGS =======================================================*/
+/* ===========================================================================================*/
+
 #if !defined(DBIF_LOGLEVEL)
     #define DBIF_LOGLEVEL LOG_WARN
 #endif
@@ -36,10 +40,14 @@
     #define DBIF_MODULE_NAME "ANON"
 #endif
 
-#if defined(DBIF_ON_CHANGE_ENABLE)
-    #define LOG_ON_CHANGE_ENABLE
+#if !defined(DBIF_LOG_ON_CHANGE_ENABLE)
+    #undef DBIF_LOG_ON_CHANGE_ENABLE
 #endif
 
+#if !defined(DBIF_END_OF_LINE_SIGN)
+    #define DBIF_END_OF_LINE_SIGN "\r\n"
+#endif
+/* ===========================================================================================*/
 
 #ifdef ARDUINO
    #include "Debug_If_Arduino.h"
@@ -109,7 +117,7 @@
     #define DBIF_IF_DEBUG_0(...) 
 #endif
 
-// DEBUG
+// DEBUG_LOG_INFO
 #if defined(DEBUG) && DBIF_LOGLEVEL >= LOG_INFO
     #define DBIF_LOG_INFO(...) DBIF_LOG_MACRO(DBIF_MODULE_NAME,"INFO ", __VA_ARGS__)
     #define DBIF_LOG_INFO_ONCE(VAR,...) DBIF_ON_CHANGE_LOG_MACRO(VAR,DBIF_MODULE_NAME,"INFO ", __VA_ARGS__)
@@ -121,7 +129,7 @@
     #define DBIF_IF_INFO(...) 
 #endif
 
-// DEBUG
+// DEBUG_LOG_WARN
 #if defined(DEBUG) && DBIF_LOGLEVEL >= LOG_WARN
     #define DBIF_LOG_WARN(...) DBIF_LOG_MACRO(DBIF_MODULE_NAME,"WARN ", __VA_ARGS__)
     #define DBIF_LOG_WARN_ONCE(OC_VAR,...) DBIF_ON_CHANGE_LOG_MACRO(OC_VAR,DBIF_MODULE_NAME,"WARN ", __VA_ARGS__)
@@ -132,7 +140,7 @@
     #define DBIF_IF_WARN(...) 
 #endif
 
-// DEBUG
+// DEBUG_LOG_ERROR
 #if defined(DEBUG) && DBIF_LOGLEVEL >= LOG_ERROR
     #define DBIF_LOG_ERROR(...) DBIF_LOG_MACRO(DBIF_MODULE_NAME,"ERROR", __VA_ARGS__)
     #define DBIF_LOG_ERROR_ONCE(OC_VAR,...) DBIF_ON_CHANGE_LOG_MACRO(OC_VAR,DBIF_MODULE_NAME,"ERROR", __VA_ARGS__)
@@ -144,6 +152,10 @@
     #define DBIF_IF_ERROR(...) 
 #endif
 
+/* ===========================================================================================*/
+/* ==== MACROS for DEBUG PRING TIMESTAMP =====================================================*/
+/* ===========================================================================================*/
+
 #if defined(DBIF_TIMESTAMP_FUN)
     #define DBIF_LOG_TIMESTAMP_MACRO                          \
         do                                                    \
@@ -154,6 +166,10 @@
     #define DBIF_LOG_TIMESTAMP_MACRO do {} while(0)
 #endif
 
+/* ===========================================================================================*/
+/* ==== MACROS for DEBUG LOG_MACRO ===========================================================*/
+/* ===========================================================================================*/
+
 #undef DBIF_LOG_MACRO
 #define  DBIF_LOG_MACRO(NAME, DEBUG_LEVEL, ...)       \
     do {                                              \
@@ -162,7 +178,7 @@
         DBIF_PRINTF_FUN(DBIF_FUNCTION_OUTPUT);        \
         DBIF_PRINTF_FUN(DEBUG_LEVEL ": " );           \
         DBIF_PRINTF_FUN(__VA_ARGS__);                 \
-        DBIF_PRINTF_FUN("\n");                        \
+        DBIF_PRINTF_FUN(DBIF_END_OF_LINE_SIGN);       \
     } while(0)
 
 
@@ -170,7 +186,7 @@
 /* ==== MACROS for DEBUG ONCE ================================================================*/
 /* ===========================================================================================*/
 
-#if defined(LOG_ON_CHANGE_ENABLE)                       
+#if defined(DBIF_LOG_ON_CHANGE_ENABLE)                       
     #define DBIF_SET_ON_CHANGE_VAR(OC_VAR, DATA_TYPE)                 \
             static DATA_TYPE DBIF_ON_CHANGE_##OC_VAR = OC_VAR;        \
             
@@ -185,7 +201,6 @@
        {                                                               \
             DBIF_LOG_MACRO(NAME,DEBUG_LEVEL,__VA_ARGS__);              \
             DBIF_ON_CHANGE_##ON_CHANGE_VAR = ON_CHANGE_VAR;            \
-            DBIF_PRINTF_FUN("Static OC_VAR = %i | Local OC_VAR = %i\n",DBIF_GET_ON_CHANGE_VAR(ON_CHANGE_VAR), ON_CHANGE_VAR);\
        }                                                               \
     }while(0)
 #else
