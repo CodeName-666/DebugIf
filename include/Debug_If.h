@@ -44,7 +44,7 @@
 #ifdef ARDUINO
    #include "Debug_If_Arduino.h"
 #else
-    #include "Debug_If_Arduino.h"
+    #include "Debug_If_Other.h"
 #endif
 
 /* A set of convenience macros for common log levels. */
@@ -165,6 +165,11 @@
         DBIF_PRINTF_FUN("\n");                        \
     } while(0)
 
+
+/* ===========================================================================================*/
+/* ==== MACROS for DEBUG ONCE ================================================================*/
+/* ===========================================================================================*/
+
 #if defined(LOG_ON_CHANGE_ENABLE)                       
     #define DBIF_SET_ON_CHANGE_VAR(OC_VAR, DATA_TYPE)                 \
             static DATA_TYPE DBIF_ON_CHANGE_##OC_VAR = OC_VAR;        \
@@ -180,7 +185,7 @@
        {                                                               \
             DBIF_LOG_MACRO(NAME,DEBUG_LEVEL,__VA_ARGS__);              \
             DBIF_ON_CHANGE_##ON_CHANGE_VAR = ON_CHANGE_VAR;            \
-            Serial.printf("Static OC_VAR = %i | Local OC_VAR = %i\n",DBIF_GET_ON_CHANGE_VAR(ON_CHANGE_VAR), ON_CHANGE_VAR);\
+            DBIF_PRINTF_FUN("Static OC_VAR = %i | Local OC_VAR = %i\n",DBIF_GET_ON_CHANGE_VAR(ON_CHANGE_VAR), ON_CHANGE_VAR);\
        }                                                               \
     }while(0)
 #else
@@ -192,5 +197,6 @@
 
 #endif
 
+/* ===========================================================================================*/
 
 #undef DBIF_LOGLEVEL
