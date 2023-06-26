@@ -57,5 +57,46 @@
   //#define DBIF_END_OF_LINE_SIGN "\r\n"
 
   #include "Debug_If.h"
+#else 
+  #ifndef DBIF_LOG_DEBUG_3
+    #define DBIF_LOG_DEBUG_3(...)  do {} while(0)
+  #endif
+
+  #ifndef DBIF_LOG_DEBUG_2
+    #define DBIF_LOG_DEBUG_2(...)  do {} while(0)
+  #endif
+
+  #ifndef DBIF_LOG_DEBUG_1
+    #define DBIF_LOG_DEBUG_1(...)  do {} while(0)
+  #endif
+
+  #ifndef DBIF_LOG_DEBUG_0
+    #define DBIF_LOG_DEBUG_0(...)  do {} while(0)
+  #endif
+
+  #ifndef DBIF_LOG_INFO
+    #define DBIF_LOG_INFO(...)  do {} while(0)
+  #endif
+
+  #ifndef DBIF_LOG_WARN
+    #define DBIF_LOG_WARN(...)  do {} while(0)
+  #endif
+
+  #ifndef DBIF_LOG_ERROR
+    #define DBIF_LOG_ERROR(...)  do {} while(0)
+  #endif
+
+  #ifndef DBIF_SET_ON_CHANGE_VAR
+    #define DBIF_SET_ON_CHANGE_VAR(...) do {} while(0)
+  #endif
+
+  #ifndef DBIF_GET_ON_CHANGE_VAR
+    #define DBIF_GET_ON_CHANGE_VAR(...) do {} while(0)
+  #endif
+
+  #ifndef DBIF_ON_CHANGE_LOG_MACRO
+    #define DBIF_ON_CHANGE_LOG_MACRO(...) do {} while(0)
+  #endif
+
 #endif
 #endif
