@@ -59,6 +59,8 @@
   #include "Debug_If.h"
 
 #else 
+  #define DBIF_INIT(...) do {} while(0)
+
   #define DBIF_LOG_DEBUG_3(...)  do {} while(0)
   #define DBIF_LOG_DEBUG_3_ONCE(...) do {} while(0)
 
